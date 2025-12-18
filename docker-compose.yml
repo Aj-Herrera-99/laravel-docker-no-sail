@@ -5,14 +5,12 @@ services:
       dockerfile: Dockerfile
     container_name: laravel_php
     
-    # Espongo porta 9000 per nginx sull'host
     ports:
       - "9000:9000"
     
-    # Monto il codice come volume per sviluppo
-    # Ogni modifica al codice è immediatamente visibile
     volumes:
-      - ./:/var/www/html
+      - /var/www/laravel-docker:/var/www/laravel-docker
     
-    # Riavvio automatico se il container si blocca
+    working_dir: /var/www/laravel-docker
+    
     restart: unless-stopped
