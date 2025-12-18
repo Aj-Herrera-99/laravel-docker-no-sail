@@ -4,12 +4,16 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: laravel_php
+
+    env_file:
+      - .env 
     
     ports:
+      - "8000:8000"
       - "9000:9000"
     
     volumes:
-      - /var/www/laravel-docker:/var/www/laravel-docker
+      - .:/var/www/laravel-docker
     
     working_dir: /var/www/laravel-docker
     

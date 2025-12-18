@@ -1,5 +1,9 @@
 #!/bin/sh
 
+#echo "=== Variabili d'ambiente ==="
+#env
+#echo "============================"
+
 # Script di inizializzazione per Laravel
 # Viene eseguito ogni volta che il container parte
 
@@ -100,5 +104,12 @@ ls -la storage/ | head -n 5
 echo "✨ Inizializzazione completata!"
 echo "🎯 Avvio PHP-FPM..."
 
+if [ "$APP_ENV" = "local" ]; then
+    echo "🧪 DEV mode: avvio artisan serve"
+    exec php artisan serve --host=0.0.0.0 --port=8000
+else
 # Esegui PHP-FPM (mantiene il container attivo)
-exec php-fpm
+    echo "🚀 PROD mode: avvio PHP-FPM"
+    exec php-fpm
+fi
+
