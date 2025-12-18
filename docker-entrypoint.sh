@@ -104,7 +104,7 @@ ls -la storage/ | head -n 5
 echo "✨ Inizializzazione completata!"
 echo "🎯 Avvio PHP-FPM..."
 
-if [ "$APP_ENV" = "production" || "$APP_ENV" = "prod"  ]; then
+if [ "$APP_ENV" = "production" ] || [ "$APP_ENV" = "prod" ]; then
 # Esegui PHP-FPM (mantiene il container attivo)
     echo "🚀 PROD mode: avvio PHP-FPM"
     exec php-fpm
