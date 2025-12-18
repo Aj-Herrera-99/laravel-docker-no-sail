@@ -104,12 +104,12 @@ ls -la storage/ | head -n 5
 echo "✨ Inizializzazione completata!"
 echo "🎯 Avvio PHP-FPM..."
 
-if [ "$APP_ENV" = "local" ]; then
-    echo "🧪 DEV mode: avvio artisan serve"
-    exec php artisan serve --host=0.0.0.0 --port=8000
-else
+if [ "$APP_ENV" = "production" || "$APP_ENV" = "prod"  ]; then
 # Esegui PHP-FPM (mantiene il container attivo)
     echo "🚀 PROD mode: avvio PHP-FPM"
     exec php-fpm
+else
+    echo "🧪 DEV mode: avvio artisan serve"
+    exec php artisan serve --host=0.0.0.0 --port=8000
 fi
 
